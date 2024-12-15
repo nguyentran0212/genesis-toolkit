@@ -21,8 +21,8 @@ mkdir -p "$output_dir"
 
 counter=1
 
-for ext in jpg jpeg png gif JPG JPEG PNG GIF; do
-  for image in "$DIR"/*.$ext; do
+for image in "$DIR"/*; do
+  if [[ -f "$image" && "$image" =~ \.(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$ ]]; then
   if [ -f "$image" ]; then
     # Extract the file extension
     extension="${image##*.}"
