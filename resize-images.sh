@@ -21,7 +21,9 @@ mkdir -p "$output_dir"
 
 counter=1
 
-for image in "$DIR"/*.{jpg,jpeg,png,gif}; do
+shopt -s nocaseglob
+
+for image in "$DIR"/*.{jpg,jpeg,png,gif,JPG,JPEG,PNG,GIF}; do
   if [ -f "$image" ]; then
     # Extract the file extension
     extension="${image##*.}"
