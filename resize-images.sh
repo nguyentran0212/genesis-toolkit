@@ -30,7 +30,7 @@ for image in "$DIR"/*; do
     new_filename="${NAME_PREFIX}${counter}.${extension}"
     
     # Resize the image
-    magick "$image" -resize "${IMAGE_WIDTH}" "$output_dir/$new_filename"
+    magick "$image" -resize "${IMAGE_WIDTH}x" "$output_dir/$new_filename"
     
     echo "Resized and renamed $image to $output_dir/$new_filename"
     
