@@ -15,8 +15,24 @@ fi
 IMAGE_WIDTH="$2"
 NAME_PREFIX="$3"
 
-echo "Directory: $DIR"
-echo "Image Width: $IMAGE_WIDTH"
-echo "Name Prefix: $NAME_PREFIX"
+counter=1
+
+for image in "$DIR"/*.{jpg,jpeg,png,gif}; do
+  if [ -f "$image" ]; then
+    # Extract the file extension
+    extension="${image##*.}"
+    
+    # Construct the new filename
+    new_filename="${NAME_PREFIX}${counter}.${extension}"
+    
+    # Resize the image
+    convert "$image" -resize "${IMAGE_WIDTH}" "$DIR/$new_filename"
+    
+    echo "Resized and renamed $image to $new_filename"
+    
+    # Increment the counter
+    counter=$((counter + 1))
+  fi
+done
 
 
