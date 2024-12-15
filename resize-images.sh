@@ -23,7 +23,6 @@ counter=1
 
 for image in "$DIR"/*; do
   if [[ -f "$image" && "$image" =~ \.(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$ ]]; then
-  if [ -f "$image" ]; then
     # Extract the file extension
     extension="${image##*.}"
     
@@ -31,14 +30,11 @@ for image in "$DIR"/*; do
     new_filename="${NAME_PREFIX}${counter}.${extension}"
     
     # Resize the image
-    convert "$image" -resize "${IMAGE_WIDTH}" "$output_dir/$new_filename"
+    magick "$image" -resize "${IMAGE_WIDTH}" "$output_dir/$new_filename"
     
-    echo "Resized and renamed $image to $new_filename"
+    echo "Resized and renamed $image to $output_dir/$new_filename"
     
     # Increment the counter
     counter=$((counter + 1))
   fi
-  done
 done
-
-
