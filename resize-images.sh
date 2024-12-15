@@ -15,6 +15,10 @@ fi
 IMAGE_WIDTH="$2"
 NAME_PREFIX="$3"
 
+# Create a subdirectory for resized images
+output_dir="$DIR/resized"
+mkdir -p "$output_dir"
+
 counter=1
 
 for image in "$DIR"/*.{jpg,jpeg,png,gif}; do
@@ -26,7 +30,7 @@ for image in "$DIR"/*.{jpg,jpeg,png,gif}; do
     new_filename="${NAME_PREFIX}${counter}.${extension}"
     
     # Resize the image
-    convert "$image" -resize "${IMAGE_WIDTH}" "$DIR/$new_filename"
+    convert "$image" -resize "${IMAGE_WIDTH}" "$output_dir/$new_filename"
     
     echo "Resized and renamed $image to $new_filename"
     
