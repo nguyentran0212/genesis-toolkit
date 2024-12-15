@@ -21,7 +21,8 @@ mkdir -p "$output_dir"
 
 counter=1
 
-for image in "$DIR"/*.{jpg,jpeg,png,gif,JPG,JPEG,PNG,GIF}; do
+for ext in jpg jpeg png gif JPG JPEG PNG GIF; do
+  for image in "$DIR"/*.$ext; do
   if [ -f "$image" ]; then
     # Extract the file extension
     extension="${image##*.}"
@@ -37,6 +38,7 @@ for image in "$DIR"/*.{jpg,jpeg,png,gif,JPG,JPEG,PNG,GIF}; do
     # Increment the counter
     counter=$((counter + 1))
   fi
+  done
 done
 
 
